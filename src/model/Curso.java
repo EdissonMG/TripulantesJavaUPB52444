@@ -5,11 +5,14 @@ public class Curso {
     private String nombre;
     private char jornada;
 
-    public Curso(int pcodigo, String pnombre, char pjornada) {
+    private Formador formador;
+
+    public Curso(int pcodigo, String pnombre, char pjornada, int fCodigo, String fNombre) {
         super();
         this.codigo = pcodigo;
         this.nombre = pnombre;
         this.jornada = pjornada;  
+        formador =  new Formador(fNombre, fCodigo);
     }
 
     public int getCodigo() {
@@ -22,6 +25,14 @@ public class Curso {
 
     public String getNombre() {
         return nombre;
+    }
+
+    public Formador getFormador() {
+        return formador;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
 
