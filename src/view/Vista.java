@@ -1,18 +1,32 @@
 package view;
 
-import model.Curso;
+import javax.swing.JFrame;
 
-public class Vista {
+import controller.CursoController;
+
+import java.awt.BorderLayout;
+
+public class Vista extends JFrame {
+
+    private PanelOpciones panelOpc;
+
+    private CursoController cursoController;
+
+    public Vista() {
+        super();
+        setSize(600, 400);
+        setTitle("Tripulantes");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
+
+        cursoController = new CursoController();
+
+        panelOpc = new PanelOpciones(this);
+
+        add(panelOpc, BorderLayout.SOUTH);
+    }
     
-    public static void main(String[] args) {
-        Curso cursoFrances = new Curso(52441, "Frances 101", 'N', 70400, "Marco Frances");
-        Curso cursoItaliano = new Curso(52442, "Italiano 101", 'T', 70401, "Marco Italiano");
-        
-        System.out.println(cursoFrances.getFormador().getNombre());
-        System.out.println(cursoFrances.getFormador().getCodigo());
-        System.out.println(cursoItaliano.getFormador().getNombre());
-        System.out.println(cursoItaliano.getFormador().getCodigo());
-
-        cursoFrances.setNombre("CambiandoNombre");
+    public void addCurso(int pCodigo, String pNombre, char pJornada) {
+        cursoController.addCurso(pCodigo, pNombre, pJornada);
     }
 }

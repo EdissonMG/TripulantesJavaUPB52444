@@ -1,7 +1,17 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Tripulante {
 
+    //Constantes
+    //las constantes van con + al inicio... esto en el diagrama UML (se escriben en mayusculas)
+
+    public final static double NOTA_MAXIMA = 5.0;
+
+    //Final es constante
+    //static nos permite ingresar a la constante en la clase
+    
     /**Atributos o caracteristicas que se definieron */
     
     private String nombre;
@@ -11,6 +21,26 @@ public class Tripulante {
     private double nota3;
     private float numeroIdentificacion;
     private String email;
+
+    private ArrayList<Curso> cursos;
+
+    public Tripulante() {
+        super();
+        cursos = new ArrayList<Curso>();
+    }
+
+    public Tripulante(String pnombre, int pid,float pnumeroIdentificacion, String pemail) {
+        super();
+        this.nombre =  pnombre;
+        this.id = pid;
+        this.nota1 = 0.0;
+        this.nota2 = 0.0;
+        this.nota3 = 0.0;
+        this.numeroIdentificacion = pnumeroIdentificacion;
+        this.email = pemail;
+        cursos = new ArrayList<Curso>();
+        
+    }
    
     /**Getters */
 
@@ -42,6 +72,10 @@ public class Tripulante {
         return numeroIdentificacion;
     }
 
+    public ArrayList<Curso> getCursos() {
+        return cursos;
+    }
+
     /**Setters */
 
     public void setNombre(String nombre) {
@@ -53,15 +87,30 @@ public class Tripulante {
     }
 
     public void setNota1(double nota1) {
-        this.nota1 = nota1;
+        if (nota1 <= NOTA_MAXIMA){
+            this.nota1 = nota1;
+        }
+        else{
+            System.out.println("La nota debe ser menor a " + NOTA_MAXIMA);
+        }
     }
 
     public void setNota2(double nota2) {
-        this.nota2 = nota2;
+        if (nota2 <= NOTA_MAXIMA){
+            this.nota2 = nota2;
+        } 
+        else{
+            System.out.println("La nota debe ser menor a " + NOTA_MAXIMA);
+        }      
     }
 
     public void setNota3(double nota3) {
-        this.nota3 = nota3;
+        if (nota3 <= NOTA_MAXIMA ){
+            this.nota3 = nota3;
+        }
+        else{
+            System.out.println("La nota debe ser menor a " + NOTA_MAXIMA);
+        }
     }
 
     public void setEmail(String email) {
@@ -103,5 +152,10 @@ public class Tripulante {
             return true;
         }
             return false;
+    }
+
+    public String adicionarCursos(Curso c){
+        cursos.add(c);
+        return "Curso adicionado " + c + " para el tripulante " + nombre ;
     }
 }
