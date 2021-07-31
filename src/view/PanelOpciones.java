@@ -1,7 +1,11 @@
 package view;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
+import jdk.nashorn.internal.scripts.JO;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.GridLayout;
@@ -44,6 +48,36 @@ public class PanelOpciones extends JPanel implements ActionListener{
 
     }
 
+    public void addCurso() {
+
+        String[] options = new String[3];
+        options[0] = "Mañana";
+        options[1] = "Tarde";
+        options[2] = "Noche";
+        char[] optionsShort = new char[3];
+        optionsShort[0] = 'M';
+        optionsShort[1] = 'T';
+        optionsShort[2] = 'N';
+
+        //solo para mostrar información
+        //JOptionPane.showMessageDialog(vistaPrincipal,"Un mensaje");
+        String nombre = JOptionPane.showInputDialog(vistaPrincipal, "Digita el nombre del curso");
+        String codigo = JOptionPane.showInputDialog(vistaPrincipal, "Digital el codigo del curso");
+        //String jornada = JOptionPane.showInputDialog(vistaPrincipal, "Digita la jornada Mañana, Tarde, Noche");
+        int option = JOptionPane.showOptionDialog(vistaPrincipal, "Escoge una opción", "Jornada del curso", 0, 
+                                        JOptionPane.PLAIN_MESSAGE, null, options, null);
+
+        System.out.println(option);
+        if (nombre !=null && !nombre.equals("") && option != -1 && codigo != "") {
+            vistaPrincipal.addCurso(Integer.parseInt(codigo), nombre, optionsShort[option]);
+        }
+        else{
+
+            JOptionPane.showMessageDialog(vistaPrincipal, "Ups! Revisa los datos", 
+                        "Error en los datos", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         // TODO Auto-generated method stub
@@ -51,7 +85,8 @@ public class PanelOpciones extends JPanel implements ActionListener{
             System.out.println("hola");
         }
         else if (e.getActionCommand().equals(BTN_ADD_CURSO)){
-            System.out.println("Agregar Curso");
+            addCurso();
+            //System.out.println("Agregar Curso");
         }
     }
 }
