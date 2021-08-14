@@ -21,4 +21,15 @@ public class CursoController {
         cursos.add(c);
     }
 
+    public String listCursos() {
+        String lista = "";
+
+        for (Curso curso : cursos) {
+            
+            lista += curso + "\n";
+        }
+        
+        return lista;
+    }
+
 }

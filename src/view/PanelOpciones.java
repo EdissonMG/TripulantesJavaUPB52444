@@ -4,7 +4,6 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import jdk.nashorn.internal.scripts.JO;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -78,11 +77,16 @@ public class PanelOpciones extends JPanel implements ActionListener{
         }
     }
 
+    private void listCursos() {
+        JOptionPane.showMessageDialog(vistaPrincipal,vistaPrincipal.listCursos(), "Lista de cursos", JOptionPane.PLAIN_MESSAGE);
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         // TODO Auto-generated method stub
         if(e.getActionCommand().equals(OPCION_1)){
-            System.out.println("hola");
+            listCursos();
+            //System.out.println("hola");
         }
         else if (e.getActionCommand().equals(BTN_ADD_CURSO)){
             addCurso();
