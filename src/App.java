@@ -9,7 +9,7 @@ public class App {
         programacion1.getNombre();
 
         try {
-            programacion1.calcularPRomedioCurso();
+            programacion1.calcularPromedioCurso();
         } catch (Exception e) {
             e.getMessage();
         }
