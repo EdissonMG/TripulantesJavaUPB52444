@@ -2,6 +2,7 @@ package view;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
@@ -44,14 +45,26 @@ public class PanelCurso extends JPanel implements ActionListener{
     }
 
     public void addCurso() {
-        if ( txtNombre.getText()!=null && txtNombre.getText().trim() != "" ) {
-            if ( txtCodigo.getText()!=null && txtCodigo.getText().trim() != "" ) {
-                if ( txtJornada.getText()!=null && txtJornada.getText().trim() != "" ) {
+        if ( !txtNombre.getText().equals(null) && !txtNombre.getText().trim().equals("")) {
+            if ( !txtCodigo.getText().equals(null) && !txtCodigo.getText().trim().equals("")) {
+                if ( !txtJornada.getText().equals(null) && !txtJornada.getText().trim().equals("")) {
                     vistaPrincipal.addCurso(Integer.parseInt(txtCodigo.getText()), 
                         txtNombre.getText(), txtJornada.getText().trim().charAt(0));
+                        txtNombre.setText("");
+                        txtCodigo.setText("");
+                        txtJornada.setText("");
+
+
+                }else{
+                    JOptionPane.showMessageDialog(vistaPrincipal,"Llena el campo Jornada");
                 }
-            }
-        }
+            }else{
+                JOptionPane.showMessageDialog(vistaPrincipal,"Llena el campo Codigo");
+            }  
+            
+        }else{
+            JOptionPane.showMessageDialog(vistaPrincipal,"Llena el campo Nombre");
+        } 
     }
 
     @Override
